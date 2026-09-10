@@ -1,0 +1,6 @@
+# Eval run artifacts — regenerate with the skill-creator loop
+eip-investment-memo-workspace/
+
+# Never commit real deal decks or anything derived from one that still carries content
+*_Approval_*.pptx
+*_Memo_*.pptx

@@ -1,0 +1,69 @@
+{
+  "skill_name": "eip-investment-memo",
+  "evals": [
+    {
+      "id": 0,
+      "name": "final-approval-full-inputs",
+      "prompt": "I need the final approval memo for Calder Water Infrastructure — we're taking it to IC in two weeks. Everything's in evals/files/calder: management call notes from the March 12 call, the five customer reference calls Alex ran, the draft CBIZ QofE with the proposed terms, and the financials workbook (historicals, revenue detail, sponsor base case, and our downside case). Build the deck.",
+      "expected_output": "A complete Final Approval memo .pptx on the EIP template: cover stating the up-to-$38.0mm commitment split by instrument, section dividers, opportunity summary, pros & cons with real mitigants, sources & uses, terms and covenants, company/customer/market section, QofE bridge and forecast cases including the downside, sponsor overview. Figures traceable to the inputs; the Lancaster loss, the unidentified second MSA loss, the PAW procurement centralisation risk, the unverified backlog and the missing service-line margins surfaced rather than smoothed over.",
+      "files": [
+        "evals/files/calder/management_call_notes.md",
+        "evals/files/calder/customer_calls.md",
+        "evals/files/calder/qofe_and_terms.md",
+        "evals/files/calder/financials.xlsx"
+      ],
+      "assertions": [
+        "Output is a valid .pptx that opens without repair and passes scripts/check_deck.py with zero errors",
+        "Deck uses the EIP template: Nunito throughout, two-tone titles in #005C2A and #919191",
+        "Cover states EIP's total commitment of up to $38.0 million split into the $26.0mm term loan, $8.0mm DDTL and $4.0mm equity co-investment",
+        "Adjusted EBITDA is stated as $11.66mm and the reported-to-adjusted bridge shows all six lettered adjustments",
+        "Entry multiple is stated as 6.7x and enterprise value as $78.0mm",
+        "Content titles state a finding in the grey half rather than a bare label",
+        "Pros & cons slide pairs each risk with a specific mitigant or an explicit statement that none was identified",
+        "The Lancaster lost MSA (price, 18% above winner) appears rather than only favourable references",
+        "The PAW procurement centralisation risk is surfaced as an unresolved open item",
+        "The CBIZ caveat that backlog is not independently verified is carried into the memo",
+        "Missing inputs (service-line gross margins, Feb-26 backlog, the second unidentified MSA loss) are flagged as diligence gaps",
+        "No financial figure appears that cannot be traced to one of the supplied input files",
+        "The downside case is presented with its covenant implication (fixed charge coverage of ~1.4x against a 1.25x covenant)"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "preliminary-thin-inputs",
+      "prompt": "Halstead Ridge sent over the teaser on Project Cascade and we did a management call last week — notes are in evals/files/calder (sponsor_teaser.md and management_call_notes.md). Can you pull together a preliminary approval memo so we can decide whether to spend money on diligence? We don't have the data room yet.",
+      "expected_output": "A Preliminary Approval memo (15-25 slides) built only from the teaser and management notes. Critically: no adjusted EBITDA, no forecast cases, no QofE section, no customer-level revenue table — because none of that was supplied. Instead a proposed diligence plan naming what needs to be verified, and explicit gap flags. Reported EBITDA of $7.8mm/$9.4mm may be used; an adjusted figure may not be invented.",
+      "assertions": [
+        "Output is a valid .pptx that passes scripts/check_deck.py with zero errors",
+        "Deck is scoped as a Preliminary Approval memo, not a Final Approval memo",
+        "Deck contains a proposed diligence plan naming workstreams to be run",
+        "No adjusted EBITDA figure is invented — only the reported $7.8mm and $9.4mm from the teaser appear",
+        "No forecast case tables appear, since no forecast was supplied",
+        "No customer-level revenue figures appear, since customer detail was not supplied",
+        "The memo explicitly states which inputs are outstanding rather than presenting the picture as complete",
+        "Management assertions from the teaser are attributed as sponsor/management claims rather than stated as verified fact",
+        "Slide count is materially smaller than a final approval memo (roughly 15-25 slides)"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "scoped-section-request",
+      "prompt": "Don't need the whole memo — I just want to redo two slides for Calder: the pros and cons page and the downside case page. Inputs are in evals/files/calder (customer_calls.md, qofe_and_terms.md, financials.xlsx). Keep it to those two.",
+      "expected_output": "A short .pptx containing only the two requested slides on the EIP template, not padded into a full memo. Pros & cons drawn from the real risks in the inputs (Akron concentration, PAW centralisation, labour constraint, Charlotte utilisation, crowded market from the channel call) each with a mitigant. Downside case table from the EIP Downside Case sheet with the covenant read-through.",
+      "files": [
+        "evals/files/calder/customer_calls.md",
+        "evals/files/calder/qofe_and_terms.md",
+        "evals/files/calder/financials.xlsx"
+      ],
+      "assertions": [
+        "Output is a valid .pptx that passes scripts/check_deck.py with zero errors",
+        "Deck contains only the two requested slides and was not expanded into a full memo",
+        "Both slides use the EIP two-tone title convention and Nunito styling",
+        "Pros & cons risks are drawn from the actual inputs rather than generic private-equity risks",
+        "Each risk is paired with a specific mitigant or an explicit statement that none was identified",
+        "The downside case figures match the EIP Downside Case sheet exactly",
+        "The downside slide states the fixed charge coverage against the 1.25x covenant"
+      ]
+    }
+  ]
+}
