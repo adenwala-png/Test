@@ -111,6 +111,13 @@ error. There is usually no working renderer available, so this check is standing
 the human eye — treat a clean report as necessary, not sufficient, and say so when you
 hand the deck over.
 
+To read the deck back — either to proof what you just built, or to see what is already in
+a memo you have been asked to update:
+
+```bash
+python scripts/deck_to_markdown.py memo.pptx -o memo.md
+```
+
 ### 6. Report what you built and what you couldn't
 
 Tell the user, briefly: the slide count by section, which claims rest on management
@@ -170,3 +177,12 @@ These decks contain live transaction terms and counterparty names.
 - `references/memo-outline.md` — slide-by-slide inventory for both memo types
 - `references/deck-api.md` — `eip_deck.py` API, grid geometry, palette
 - `references/writing.md` — prose conventions and evidence discipline
+
+## Scripts
+
+| Script | Purpose |
+|---|---|
+| `scripts/eip_deck.py` | The builder. Import it; don't place shapes by hand |
+| `scripts/check_deck.py` | Layout QA — run before handing anything over |
+| `scripts/deck_to_markdown.py` | Read a deck back as text |
+| `scripts/make_template.py` | Re-derive the template from a current memo |
